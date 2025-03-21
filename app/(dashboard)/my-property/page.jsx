@@ -7,11 +7,6 @@ import SidebarMenu from "@/components/dashboard/SidebarMenu";
 import Header2 from "@/components/headers/Header2";
 import React from "react";
 
-export const metadata = {
-  title: "My Property || Homelengo - Real Estate React Nextjs Template",
-  description: "Homelengo - Real Estate React Nextjs Template",
-};
-
 export default function MyPropertyPage() {
   const { data: session, status } = useSession();
 
