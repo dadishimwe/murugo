@@ -7,10 +7,15 @@ import DetailsTitle1 from "@/components/property-details/DetailsTitle1";
 import PropertyDetails from "@/components/property-details/PropertyDetails";
 import Slider1 from "@/components/property-details/Slider1";
 
-export const metadata = {
-  title: "Property Details 01 || Homelengo - Real Estate React Nextjs Template",
-  description: "Homelengo - Real Estate React Nextjs Template",
-};
+export async function generateMetadata({ params }) {
+  const property = await fetchPropertyById(params.id);
+  return {
+    title: property
+      ? `${property.title} || Homelengo - Real Estate React Nextjs Template`
+      : "Property Details 01 || Homelengo - Real Estate React Nextjs Template",
+    description: property ? `View details of ${property.title}` : "Homelengo - Real Estate React Nextjs Template",
+  };
+}
 
 export default function PropertyDetailsV1Page({ params }) {
   const [property, setProperty] = useState(null);
@@ -47,3 +52,5 @@ export default function PropertyDetailsV1Page({ params }) {
     </>
   );
 }
+
+export { fetchPropertyById } from "@/lib/api";
