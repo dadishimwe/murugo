@@ -6,6 +6,7 @@ import Header1 from "@/components/headers/Header1";
 import DetailsTitle1 from "@/components/property-details/DetailsTitle1";
 import PropertyDetails from "@/components/property-details/PropertyDetails";
 import Slider1 from "@/components/property-details/Slider1";
+import { fetchPropertyById } from "@/lib/api";
 
 export async function generateMetadata({ params }) {
   const property = await fetchPropertyById(params.id);
@@ -52,5 +53,3 @@ export default function PropertyDetailsV1Page({ params }) {
     </>
   );
 }
-
-export { fetchPropertyById } from "@/lib/api";

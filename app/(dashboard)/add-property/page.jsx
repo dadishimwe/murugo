@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import SidebarMenu from "@/components/dashboard/SidebarMenu";
 import Header2 from "@/components/headers/Header2";
+import Head from "next/head";
 import React from "react";
 
 export default function AddPropertyPage() {
@@ -53,53 +54,28 @@ export default function AddPropertyPage() {
   };
 
   return (
-    <div className="layout-wrap">
-      <Header2 />
-      <SidebarMenu />
-      <main>
-        <h1>Add New Property</h1>
-        {success && <p style={{ color: "green" }}>Property added successfully!</p>}
-        {error && <p style={{ color: "red" }}>Error: {error}</p>}
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            placeholder="Property Title"
-            required
-          />
-          <input
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            placeholder="Price"
-            required
-          />
-          <input
-            type="number"
-            name="lat"
-            value={formData.location.lat}
-            onChange={handleChange}
-            placeholder="Latitude"
-            step="any"
-            required
-          />
-          <input
-            type="number"
-            name="lng"
-            value={formData.location.lng}
-            onChange={handleChange}
-            placeholder="Longitude"
-            step="any"
-            required
-          />
-          {/* Image uploads require additional setup */}
-          <button type="submit">Add Property</button>
-        </form>
-      </main>
-      <div className="overlay-dashboard" />
-    </div>
+    <>
+      <Head>
+        <title>Add Property || Homelengo - Real Estate React Nextjs Template</title>
+        <meta name="description" content="Homelengo - Real Estate React Nextjs Template" />
+      </Head>
+      <div className="layout-wrap">
+        <Header2 />
+        <SidebarMenu />
+        <main>
+          <h1>Add New Property</h1>
+          {success && <p style={{ color: "green" }}>Property added successfully!</p>}
+          {error && <p style={{ color: "red" }}>Error: {error}</p>}
+          <form onSubmit={handleSubmit}>
+            <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Property Title" required />
+            <input type="number" name="price" value={formData.price} onChange={handleChange} placeholder="Price" required />
+            <input type="number" name="lat" value={formData.location.lat} onChange={handleChange} placeholder="Latitude" step="any" required />
+            <input type="number" name="lng" value={formData.location.lng} onChange={handleChange} placeholder="Longitude" step="any" required />
+            <button type="submit">Add Property</button>
+          </form>
+        </main>
+        <div className="overlay-dashboard" />
+      </div>
+    </>
   );
 }
